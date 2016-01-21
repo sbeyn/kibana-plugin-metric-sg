@@ -17,7 +17,7 @@ define(function (require) {
     return new TemplateVisType({
       name: 'metric-sg',
       title: 'Metric-sg',
-      description: 'SAINT-GOBAIN Plugin Kibana - Display format number',
+      description: 'Display format number',
       icon: 'fa-sort-numeric-asc',
       template: require('plugins/metric_sg/metric_sg.html'),
       params: {
