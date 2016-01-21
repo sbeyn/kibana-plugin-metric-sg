@@ -1,0 +1,50 @@
+<ul class="opt-row">
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Metric label</h4>
+    <div class="opt-group">
+      <div ng-repeat="(key, value) in $root.editorMetric.label">
+          <div>
+            <div class="form-group">
+  		<label>Label {{ value }}</label>
+ 		<input type="text" ng-model="vis.params.configMetric.label[key]" ng-init="vis.params.configMetric.label[key] = vis.params.configMetric.label[key]" class="form-control"/>
+            </div>
+          </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Metric Size</h4>
+    <div class="opt-group">
+      <div ng-repeat="(key, value) in $root.editorMetric.label">
+          <div>
+            <div class="form-group">
+  		<label>Font Size {{ value }} - {{ vis.params.configMetric.fontSize[key] }}pt</label>
+ 		<input type="range" ng-model="vis.params.configMetric.fontSize[key]" ng-init="vis.params.configMetric.fontSize[key] = vis.params.configMetric.fontSize[key]" class="form-control" min="12" max="120" />
+            </div>
+          </div>
+      </div>
+    </div>
+  </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Metric Format</h4>
+    <div class="opt-group">
+      <div ng-repeat="(key, value) in $root.editorMetric.label">
+          <div>
+            <div class="form-group">
+              <label>Format Metric {{ value }}:</label>
+                    <select ng-model="vis.params.configMetric.format[key]" ng-init="vis.params.configMetric.format[key] = vis.params.configMetric.format[key]" class="form-control">
+                      <option ng-repeat="option in $root.editorMetric.typeformat" value="{{option}}">{{option}}</option>
+                    </select>
+            </div>
+          </div>
+      </div>
+    </div>
+  </li>
+</ul>
+

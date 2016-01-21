@@ -1,0 +1,6 @@
+<div ng-controller="KbnMetricsgVisController" class="metric-vis">
+    <div class="metric-container" ng-repeat="metric in metrics">
+        <div class="metric-value" ng-style="{'font-size': vis.params.configMetric.fontSize[metric.data]+'pt'}">{{metric.value}}</div>
+        <div>{{metric.label}}</div>
+    </div>
+</div>
