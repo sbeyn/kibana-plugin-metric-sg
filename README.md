@@ -16,18 +16,19 @@ Contenu
 -------
 ```
 .
-+-- index.js
-+-- package.json
-+-- public
-    +-- bower_components
-    ¦   +-- moment
-    +-- line_sg_controller.js
-    +-- line_sg.html
-    +-- line_sg.js
-    +-- line_sg.less
-    +-- line_sg_params.html
-    +-- styles
-        +-- accordion.css
+├── index.js
+├── package.json
+├── public
+│   ├── bower_components
+│   │   └── moment
+│   ├── metric_sg_controller.js
+│   ├── metric_sg.html
+│   ├── metric_sg.js
+│   ├── metric_sg.less
+│   ├── metric_sg_params.html
+│   └── styles
+│       └── accordion.css
+└── README.md
 ```
 Le plugin a été créé à partir des librairies Kibana et basé sur le framework Angularjs.
 
