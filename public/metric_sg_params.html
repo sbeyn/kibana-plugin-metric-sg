@@ -46,5 +46,40 @@
       </div>
     </div>
   </li>
+  <li>
+    <input type="checkbox" class="accordion" checked>
+    <i></i>
+    <h4>Threshold Color</h4>
+    <div class="opt-group">
+      Enable threshold color&nbsp;<input type="checkbox" class="disgrp" ng-model="vis.params.configMetric.threshold_enable">
+      <div class="disgrp">
+            <div class="form-group">
+                    <select ng-model="vis.params.configMetric_threshold_data" class="form-control">
+                      <option ng-repeat="(key, value) in $root.editorMetric.label" value="{{key}}">{{ value }}</option>
+                    </select>
+            </div>
+            <div class="form-group">
+              <label>Level0 Color:</label>
+                    <input type="color" ng-model="vis.params.configMetric_threshold_color0" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>Level1 Threshold:</label>
+                    <input type="text" ng-model="vis.params.configMetric_threshold_value1" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>Level1 Color:</label>
+                    <input type="color" ng-model="vis.params.configMetric_threshold_color1" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>Level2 Threshold:</label>
+                    <input type="text" ng-model="vis.params.configMetric_threshold_value2" class="form-control"/>
+            </div>
+            <div class="form-group">
+              <label>Level2 Color:</label>
+                    <input type="color" ng-model="vis.params.configMetric_threshold_color2" class="form-control"/>
+            </div>
+      </div>
+    </div>
+  </li>
 </ul>
 

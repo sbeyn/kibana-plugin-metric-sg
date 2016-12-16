@@ -9,9 +9,10 @@ define(function (require) {
     var tabifyAggResponse = Private(require('ui/agg_response/tabify/tabify'));
 
     $scope.$root.editorMetric = {};
-    $scope.$root.editorMetric.typeformat = ["Duration","Percents","Seconds","Octets","Euros"];
+    $scope.$root.editorMetric.typeformat = ["None","Duration","Percents","Seconds","Octets","Euros"];
 
     var metrics = $scope.metrics = [];
+    var colors = $scope.colors = [];
     var label = {};
 
     var formatd3 = function(d,type) {
@@ -71,6 +72,9 @@ define(function (require) {
  	 });
          switch (type)
              {
+                case 'None': formatValue = d3.format(".3s"); return formatValue(d);
+                break;
+             
                 case 'Duration': return moment.duration(d, 'seconds').humanize();
                 break;
              
@@ -93,20 +97,35 @@ define(function (require) {
     $scope.processTableGroups = function (tableGroups) {
       tableGroups.tables.forEach(function (table) {
         table.columns.forEach(function (column, i) {
-          var fieldFormatter = table.aggConfig(column).fieldFormatter();
-	  var d = "data" + i;
-	  label[d] = column.title;
-          var title = (typeof $scope.vis.params.configMetric.label != "undefined") ? $scope.vis.params.configMetric.label[d] : column.title;
-          var type = (typeof $scope.vis.params.configMetric.format != "undefined") ? $scope.vis.params.configMetric.format[d] : "";
-          metrics.push({
-            label: title,
-            data: d,
-            value: formatd3( table.rows[0][i], type)
-          });
+		var obj = column.aggConfig._opts;
+                if ( typeof obj != "undefined" ) {
+                        if ( obj.type != "terms") {
+		          var fieldFormatter = table.aggConfig(column).fieldFormatter();
+			  var d = "data" + i;
+			  label[d] = column.title;
+		          var title = (typeof $scope.vis.params.configMetric.label != "undefined") ? $scope.vis.params.configMetric.label[d] : column.title;
+		          var type = (typeof $scope.vis.params.configMetric.format != "undefined") ? $scope.vis.params.configMetric.format[d] : "";
+		          if ( $scope.vis.params.configMetric.threshold_enable ) {
+				if (d && d === $scope.vis.params.configMetric_threshold_data) {
+					colors.bg = $scope.vis.params.configMetric_threshold_color0;
+					colors.txt = "#ffffff";
+					if (table.rows[0][i] >= $scope.vis.params.configMetric_threshold_value1 && table.rows[0][i] < $scope.vis.params.configMetric_threshold_value2) {
+					        colors.bg = $scope.vis.params.configMetric_threshold_color1;
+					} else if (table.rows[0][i] >= $scope.vis.params.configMetric_threshold_value2) {
+					        colors.bg = $scope.vis.params.configMetric_threshold_color2;
+					}
+				}
+			  }
+          		  metrics.push({
+          		    label: title,
+          		    data: d,
+          		    value: formatd3( table.rows[0][i], type)
+          		  });
+			}
+		}
         });
       });
       $scope.$root.editorMetric.label = label;
-console.log(metrics);
     };
 
     $scope.$watch('esResponse', function (resp) {

@@ -1,16 +1,17 @@
 
-kibana-plugin-supmetric
+kibana-plugin-metric-sg
 =======================
 
 
 Introduction
 -------------
 
-Ce plugin permet la création d'une vue avec plusieurs types de graphiques sur Kibana Version 4.2.2, 4.3.0, 4.4.0:
+Ce plugin permet la création d'une vue avec plusieurs types de graphiques sur Kibana Version 4.x:
 
 * Choix du type du format nombre (pourcentage, heure, durée, relatifif)
 * Définition du label
-
+* Paramétrage de la taille
+* Alertes visuelles
 
 Contenu
 -------
@@ -42,7 +43,7 @@ Installation
 
 **1)** Ajouter le plugin 
 ```
-	$ cd <path>/kibana/src/plugins
+	$ cd <path>/kibana/installedPlugins
 	$ git clone <depot> metric-sg	
 ```
 

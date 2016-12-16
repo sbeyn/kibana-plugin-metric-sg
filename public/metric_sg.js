@@ -24,6 +24,12 @@ define(function (require) {
         defaults: {
           fontSize: 60,
 	  configMetric: {},
+          configMetric_threshold_data: '',
+          configMetric_threshold_color0: "#5cb85c",
+          configMetric_threshold_value1: 80,
+          configMetric_threshold_color1: "#ffaa00",
+          configMetric_threshold_value2: 90,
+          configMetric_threshold_color2: "#ff0000",
         },
         editor: require('plugins/metric_sg/metric_sg_params.html')
       },
@@ -36,6 +42,14 @@ define(function (require) {
           defaults: [
             { type: 'count', schema: 'metric' }
           ]
+        },
+        {
+          group: 'buckets',
+          name: 'segment',
+          title: 'X-Axis',
+          min: 0,
+          max: 1,
+          aggFilter: ['terms']
         }
       ])
     });
