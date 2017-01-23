@@ -48,8 +48,8 @@ define(function (require) {
           name: 'segment',
           title: 'X-Axis',
           min: 0,
-          max: 1,
-          aggFilter: ['terms']
+          max: 3,
+          aggFilter: ['terms','date_histogram','filters']
         }
       ])
     });

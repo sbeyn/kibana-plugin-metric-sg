@@ -3,6 +3,7 @@ define(function (require) {
   // didn't already
   var d3 = require('d3');
   var moment = require('./bower_components/moment/moment');
+  var tinycolor = require('./bower_components/tinycolor/tinycolor');
   var module = require('ui/modules').get('kibana/metric_sg', ['kibana']);
 
   module.controller('KbnMetricsgVisController', function ($scope, Private) {
@@ -14,6 +15,13 @@ define(function (require) {
     var metrics = $scope.metrics = [];
     var colors = $scope.colors = [];
     var label = {};
+
+    //---- Check dark color: ----//
+    function Dark(c) {
+    	var color = tinycolor(c);
+    	return color.isDark();
+    }
+    
 
     var formatd3 = function(d,type) {
          var formatValue = "";
@@ -108,13 +116,17 @@ define(function (require) {
 		          if ( $scope.vis.params.configMetric.threshold_enable ) {
 				if (d && d === $scope.vis.params.configMetric_threshold_data) {
 					colors.bg = $scope.vis.params.configMetric_threshold_color0;
-					colors.txt = "#ffffff";
 					if (table.rows[0][i] >= $scope.vis.params.configMetric_threshold_value1 && table.rows[0][i] < $scope.vis.params.configMetric_threshold_value2) {
 					        colors.bg = $scope.vis.params.configMetric_threshold_color1;
 					} else if (table.rows[0][i] >= $scope.vis.params.configMetric_threshold_value2) {
 					        colors.bg = $scope.vis.params.configMetric_threshold_color2;
 					}
 				}
+			  }
+			  if (Dark(colors.bg)) {
+				colors.txt = "#ffffff";	
+			  } else {
+				colors.txt = "#444444";
 			  }
           		  metrics.push({
           		    label: title,
