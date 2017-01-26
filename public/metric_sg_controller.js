@@ -122,12 +122,14 @@ define(function (require) {
 					        colors.bg = $scope.vis.params.configMetric_threshold_color2;
 					}
 				}
+
+ 				if (Dark(colors.bg)) {
+                                	colors.txt = "#ffffff";
+                          	} else {
+                                	colors.txt = "#444444";
+                          	}
 			  }
-			  if (Dark(colors.bg)) {
-				colors.txt = "#ffffff";	
-			  } else {
-				colors.txt = "#444444";
-			  }
+	
           		  metrics.push({
           		    label: title,
           		    data: d,
